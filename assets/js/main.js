@@ -2,25 +2,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================
   // Configuración WhatsApp
   // =========================
-  const WHATSAPP_NUMBER = '50700000000'; // Solo números con código de país
-
+  const WHATSAPP_NUMBER = '50763794292';
   function getWhatsAppLink(message = '') {
     const base = `https://wa.me/${WHATSAPP_NUMBER}`;
     return message ? `${base}?text=${encodeURIComponent(message)}` : base;
   }
-
-  // Reemplaza todos los [data-whatsapp]
   document.querySelectorAll('[data-whatsapp]').forEach(el => {
     const msg = el.dataset.whatsapp || '';
     el.setAttribute('href', getWhatsAppLink(msg));
   });
 
   // =========================
-  // Menú móvil drop-down (#navDrop)
+  // Menú móvil drop-down
   // =========================
-  const hamb  = document.querySelector('.hamb');
-  const drop  = document.getElementById('navDrop');
-
+  const hamb = document.querySelector('.hamb');
+  const drop = document.getElementById('navDrop');
   function setOpen(open) {
     if (!drop || !hamb) return;
     drop.classList.toggle('open', open);
@@ -28,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     drop.setAttribute('aria-hidden', open ? 'false' : 'true');
     document.documentElement.classList.toggle('menu-open', open);
   }
-
   hamb?.addEventListener('click', () => setOpen(!drop.classList.contains('open')));
   drop?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
   window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
@@ -60,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const subject = encodeURIComponent(`Solicitud de transporte — ${data.empresa || 'Particular'}`);
       const body = encodeURIComponent(
-`Nombre: ${data.nombre}
+        `Nombre: ${data.nombre}
 Empresa: ${data.empresa || '-'}
 Teléfono: ${data.telefono || '-'}
 Correo: ${data.correo}
@@ -86,7 +81,7 @@ ${data.mensaje || ''}`
     track.setAttribute('tabindex', '0');
     track.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight') track.scrollBy({ left: 300, behavior: 'smooth' });
-      if (e.key === 'ArrowLeft')  track.scrollBy({ left: -300, behavior: 'smooth' });
+      if (e.key === 'ArrowLeft') track.scrollBy({ left: -300, behavior: 'smooth' });
     });
   });
 

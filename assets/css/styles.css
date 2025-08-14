@@ -188,34 +188,10 @@ img {
     pointer-events: auto;
 }
 
-/* solo existe en móvil */
-@media (min-width:860px) {
-    .nav-drop {
-        display: none;
-    }
-}
-
 /* Hamburguesa: solo móvil */
 .hamb {
     display: inline-block;
     line-height: 0;
-}
-
-@media (min-width:860px) {
-    .hamb {
-        display: none;
-    }
-}
-
-/* Enlaces/CTA visibles en desktop (ya los tienes) */
-@media (min-width:860px) {
-    .nav-links {
-        display: flex;
-    }
-
-    .nav-cta {
-        display: flex;
-    }
 }
 
 
@@ -240,31 +216,6 @@ body.menu-open {
         linear-gradient(180deg,
             color-mix(in oklab, var(--bg) 60%, transparent) 0%,
             transparent 80%);
-}
-
-/* Contenedor de imagen con overlay */
-.hero-img {
-    position: relative;
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid color-mix(in oklab, var(--muted) 16%, transparent);
-}
-
-/* Overlay degradado desde la izquierda hacia la derecha */
-.hero-img::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 50%;
-    /* cubre la mitad izquierda */
-    height: 100%;
-    background: linear-gradient(to right,
-            rgba(14, 43, 102, 0.35),
-            /* azul corporativo con transparencia */
-            transparent);
-    z-index: 1;
 }
 
 
@@ -319,19 +270,6 @@ body.menu-open {
     font: 800 20px/1.1 Montserrat
 }
 
-.hero-img {
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid color-mix(in oklab, var(--muted) 16%, transparent)
-}
-
-.hero-img .tag {
-    position: absolute;
-    right: 12px;
-    bottom: 12px
-}
-
 /* Sections */
 section {
     padding: 56px 0
@@ -369,32 +307,34 @@ section {
     grid-template-columns: 1fr
 }
 
-@media (min-width:860px) {
-    .grid.cols-2 {
-        grid-template-columns: repeat(2, 1fr)
-    }
-}
-
 /* Fleet carousel */
 .carousel {
-    position: relative
+    position: relative;
 }
 
 .carousel-track {
     display: flex;
     gap: 14px;
-    overflow: auto scroll;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scroll-snap-type: none;
+    /* DESACTIVADO en autoplay */
+    transition: scroll-snap-type 0.2s ease;
+}
+
+.carousel-track.snap {
     scroll-snap-type: x mandatory;
-    padding-bottom: 8px
+    /* ACTIVADO en interacción */
 }
 
 .carousel-track::-webkit-scrollbar {
-    height: 8px
+    height: 8px;
 }
 
 .carousel-track::-webkit-scrollbar-thumb {
     background: color-mix(in oklab, var(--brand-blue) 35%, transparent);
-    border-radius: 999px
+    border-radius: 999px;
 }
 
 .slide {
@@ -403,13 +343,26 @@ section {
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid color-mix(in oklab, var(--muted) 16%, transparent);
-    box-shadow: var(--shadow-lg)
+    box-shadow: var(--shadow-lg);
+    background: var(--bg);
 }
 
-@media (min-width:860px) {
-    .slide {
-        min-width: 32%
-    }
+/* Imagen siempre bloque, sin espacios raros */
+.slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Leyenda integrada como parte inferior de la tarjeta */
+.slide figcaption {
+    text-align: center;
+    padding: 10px 8px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--brand-blue);
+    background: var(--bg-2);
+    border-top: 1px solid color-mix(in oklab, var(--muted) 12%, transparent);
 }
 
 /* Feature list */
@@ -444,12 +397,6 @@ section {
 .mv-grid {
     display: grid;
     gap: 18px
-}
-
-@media (min-width:860px) {
-    .mv-grid {
-        grid-template-columns: repeat(3, 1fr)
-    }
 }
 
 /* Contact */
@@ -502,12 +449,6 @@ footer {
 .foot-links.row {
     display: flex;
     gap: 10px
-}
-
-@media (min-width:860px) {
-    .foot {
-        grid-template-columns: 1.2fr .8fr .8fr
-    }
 }
 
 /* Reveal animations */
@@ -646,30 +587,6 @@ footer {
     font-weight: 700
 }
 
-/* Desktop extras */
-@media (min-width:860px) {
-    .nav-links {
-        display: flex
-    }
-
-    .nav-cta {
-        display: flex
-    }
-
-    section {
-        padding: 72px 0
-    }
-
-    .hero .grid {
-        grid-template-columns: 1.05fr .95fr;
-        align-items: center
-    }
-
-    .stats {
-        grid-template-columns: repeat(3, minmax(0, 1fr))
-    }
-}
-
 /* === HERO COMPACTA (reduce el espacio vacío superior) === */
 :root {
     --nav-h: 72px;
@@ -690,15 +607,45 @@ footer {
             transparent 80%);
 }
 
-@media (min-width: 860px) {
-
-    /* asegura “por encima del pliegue” sin exceso de aire */
-    .hero .grid {
-        grid-template-columns: 1.05fr .95fr;
-        align-items: center;
-        min-height: calc(70svh - var(--nav-h));
-    }
+.hero-img {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
 }
+
+/* La imagen ocupa todo el bloque */
+.hero-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+/* Overlay sutil */
+.hero-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.02) 0%,
+            rgba(0, 0, 0, 0.15) 100%);
+    pointer-events: none;
+}
+
+.hero-img:hover img {
+    transform: scale(1.04);
+}
+
+/* Pie de foto fuera del recorte */
+.hero-caption {
+    margin-top: 6px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+}
+
 
 /* opcional: si algún navegador colapsa márgenes, evita huecos extra */
 #inicio {
@@ -711,13 +658,6 @@ footer {
     line-height: 0;
 }
 
-@media (min-width: 860px) {
-    .hamb {
-        display: none;
-        /* se oculta en pantallas grandes */
-    }
-}
-
 /* Mostrar enlaces y CTA solo en escritorio */
 @media (min-width: 860px) {
     .nav-links {
@@ -726,5 +666,81 @@ footer {
 
     .nav-cta {
         display: flex;
+    }
+
+    .nav-drop {
+        display: none;
+    }
+
+    .hamb {
+        display: none;
+    }
+
+    .nav-links {
+        display: flex;
+    }
+
+    .nav-cta {
+        display: flex;
+    }
+
+    .grid.cols-2 {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .slide {
+        min-width: 32%;
+    }
+
+    .mv-grid {
+        grid-template-columns: repeat(3, 1fr)
+    }
+
+    .foot {
+        grid-template-columns: 1.2fr .8fr .8fr
+    }
+
+    .nav-links {
+        display: flex
+    }
+
+    .nav-cta {
+        display: flex
+    }
+
+    section {
+        padding: 72px 0
+    }
+
+    .hero .grid {
+        grid-template-columns: 1.05fr .95fr;
+        align-items: center
+    }
+
+    .stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+
+    .hero .grid {
+        grid-template-columns: 1.05fr .95fr;
+        align-items: center;
+        min-height: calc(70svh - var(--nav-h));
+    }
+
+    .hamb {
+        display: none;
+        /* se oculta en pantallas grandes */
+    }
+}
+
+/* Ajuste del carrusel en móviles */
+@media (max-width: 860px) {
+    .carousel-track {
+        gap: 8px;
+        padding-bottom: 4px;
+    }
+
+    .slide {
+        min-width: 72%;
     }
 }
