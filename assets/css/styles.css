@@ -108,7 +108,11 @@ img {
     padding: 12px 18px;
     border-radius: 999px;
     font-weight: 700;
-    cursor: pointer
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    font-family: inherit;
+    background: none;
 }
 
 .btn-primary {
@@ -220,15 +224,8 @@ body.menu-open {
 
 
 .eyebrow {
-    display: inline-flex;
-    gap: 10px;
-    align-items: center;
-    border: 1px solid color-mix(in oklab, var(--brand-orange) 45%, transparent);
-    padding: 6px 10px;
-    border-radius: 999px;
     color: var(--brand-orange);
     font-weight: 700;
-    background: color-mix(in oklab, var(--brand-orange) 8%, transparent)
 }
 
 .h1 {
@@ -262,7 +259,7 @@ body.menu-open {
     border-radius: 16px;
     padding: 14px;
     text-align: center;
-    box-shadow: var(--shadow-lg)
+    box-shadow: 0 6px 16px rgba(14, 43, 102, 0.15);
 }
 
 .stat strong {
@@ -656,6 +653,29 @@ footer {
 .hamb {
     display: inline-block;
     line-height: 0;
+}
+
+/* Animación de latido */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 90, 31, 0.6);
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(255, 90, 31, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 90, 31, 0);
+    }
+}
+
+/* Clase para aplicar el latido */
+.btn-primary.pulse {
+    animation: pulse 1.8s infinite;
 }
 
 /* Mostrar enlaces y CTA solo en escritorio */
