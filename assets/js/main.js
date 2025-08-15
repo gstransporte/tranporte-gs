@@ -64,7 +64,7 @@ Servicio: ${data.servicio}
 Mensaje:
 ${data.mensaje || ''}`
       );
-      window.location.href = `mailto:josejulian0916@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:transpgs@hotmail.es?subject=${subject}&body=${body}`;
     });
   }
 
@@ -85,24 +85,66 @@ ${data.mensaje || ''}`
     });
   });
 
-  // =========================
-  // Scroll suave con offset del header
-  // =========================
-  const prefersNoMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function smoothScrollTo(hash) {
-    const target = document.querySelector(hash);
-    if (!target) return;
-    const header = document.querySelector('.nav');
-    const offset = (header?.offsetHeight || 0) + 8;
-    const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({ top: y, behavior: prefersNoMotion ? 'auto' : 'smooth' });
-  }
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const hash = a.getAttribute('href');
-      if (!hash || hash === '#') return;
-      e.preventDefault();
-      smoothScrollTo(hash);
+  // === Carrusel de clientes infinito ===
+  const container = document.querySelector('.clientes-carousel');
+  const track = document.getElementById('clientesTrack');
+
+  if (container && track) {
+    const SPEED_PX_PER_SEC = 50;
+
+    function imagesReady(node) {
+      const imgs = Array.from(node.querySelectorAll('img'));
+      return Promise.all(imgs.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(res => img.addEventListener('load', res, { once: true }));
+      }));
+    }
+
+    function measureSetWidth(nodes) {
+      let w = 0;
+      nodes.forEach(el => {
+        const cs = getComputedStyle(el);
+        w += el.getBoundingClientRect().width + parseFloat(cs.marginRight || '0');
+      });
+      return w;
+    }
+
+    async function setup() {
+      track.style.removeProperty('--clientes-distance');
+      track.style.removeProperty('--clientes-duration');
+
+      // conservar solo el set original
+      const originals = Array.from(track.querySelectorAll('img')).filter(i => !i.dataset.clone);
+      track.innerHTML = '';
+      originals.forEach(i => track.appendChild(i));
+
+      // esperar a que carguen las imágenes para medir bien
+      await imagesReady(track);
+
+      const firstSetWidth = measureSetWidth(originals);
+      const needTotal = firstSetWidth + container.clientWidth;
+
+      // clonar hasta cubrir
+      while (track.scrollWidth < needTotal && originals.length) {
+        originals.forEach(img => {
+          const clone = img.cloneNode(true);
+          clone.dataset.clone = '1';
+          track.appendChild(clone);
+        });
+      }
+
+      const duration = firstSetWidth / SPEED_PX_PER_SEC;
+      track.style.setProperty('--clientes-distance', firstSetWidth + 'px');
+      track.style.setProperty('--clientes-duration', duration + 's');
+    }
+
+    // inicial y on-resize
+    setup();
+    let t;
+    window.addEventListener('resize', () => {
+      clearTimeout(t);
+      t = setTimeout(setup, 120);
     });
-  });
+  }
+
 });

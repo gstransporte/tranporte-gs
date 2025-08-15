@@ -498,6 +498,10 @@ footer {
     /* debajo del overlay móvil (9999) pero sobre el contenido */
 }
 
+.fab-tk {
+    background: linear-gradient(135deg, #25F4EE 0%, #FE2C55 100%);
+}
+
 /* Colores de cada red (gradiente/coherencia con la UI) */
 .fab-ig {
     background: radial-gradient(circle at 30% 30%, #ffdc80, #f77737 40%, #e1306c 70%, #c13584 90%);
@@ -676,6 +680,100 @@ footer {
 /* Clase para aplicar el latido */
 .btn-primary.pulse {
     animation: pulse 1.8s infinite;
+}
+
+.clientes-carousel {
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0;
+}
+
+.clientes-track {
+    display: inline-flex;
+    /* ancho = contenido */
+    align-items: center;
+    width: max-content;
+    will-change: transform;
+    animation: scrollClientes var(--clientes-duration, 20s) linear infinite;
+}
+
+.clientes-track img {
+    height: 60px;
+    flex: 0 0 auto;
+    object-fit: contain;
+    margin-right: 40px;
+    filter: grayscale(100%);
+    transition: filter .3s;
+}
+
+.clientes-track img:hover {
+    filter: grayscale(0%);
+}
+
+.track-card {
+    display: grid;
+    gap: 18px;
+    align-items: center;
+    grid-template-columns: 1fr;
+    padding: 18px;
+    border: 1px solid color-mix(in oklab, var(--muted) 16%, transparent);
+    border-radius: 18px;
+    background: linear-gradient(180deg, color-mix(in oklab, var(--brand-blue) 10%, transparent), transparent), var(--bg);
+    box-shadow: var(--shadow-lg);
+}
+
+.track-art {
+    display: none;
+    color: var(--brand-blue);
+}
+
+@media (min-width: 860px) {
+    .track-card {
+        grid-template-columns: 1.2fr .8fr;
+        padding: 24px;
+    }
+
+    .track-art {
+        display: block;
+        aspect-ratio: 4/3;
+    }
+}
+
+/* (Opcional) estilos para el intento de iframe */
+.track-embed {
+    position: relative;
+    margin-top: 16px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--muted) 14%, transparent);
+}
+
+.track-embed iframe {
+    width: 100%;
+    height: min(70vh, 800px);
+    display: block;
+    border: 0;
+    background: var(--bg-2);
+}
+
+.track-embed-fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.track-embed.loaded .track-embed-fallback {
+    display: none;
+}
+
+@keyframes scrollClientes {
+    to {
+        transform: translateX(calc(-1 * var(--clientes-distance, 600px)));
+    }
 }
 
 /* Mostrar enlaces y CTA solo en escritorio */
