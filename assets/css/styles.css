@@ -712,6 +712,12 @@ footer {
     box-shadow: 0 6px 16px -6px color-mix(in oklab, var(--brand-orange) 60%, transparent);
 }
 
+footer .firma {
+  margin-top: 12px;   
+  margin-bottom: 6px;
+  text-align: center;
+}
+
 /* Mostrar enlaces y CTA solo en escritorio */
 @media (min-width: 860px) {
     .nav-links {
@@ -818,4 +824,5 @@ html {
 /* Fallback adicional: cada sección con id deja margen */
 [id] {
     scroll-margin-top: calc(var(--nav-h) - 80px);
+
 }
