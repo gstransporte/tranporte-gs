@@ -104,7 +104,7 @@
             </div>
             <div style="position:relative" class="reveal">
                 <div class="hero-img">
-                    <img src="assets/img/hero.png" alt="Camión de carga en carretera">
+                    <img src="assets/img/hero.jpg" alt="Camión de carga en carretera">
                 </div>
             </div>
         </div>
@@ -149,25 +149,73 @@
         </div>
     </section>
 
-    <section id="flota" class="reveal">
+    <section id="galeria" class="reveal">
         <div class="container">
             <h3 class="section-title">Nuestra flota</h3>
             <p class="section-lead">Más de 25 cabezales y 125 unidades de arrastre y chasises para movimiento de
                 contenedores de 20', 40' y 45', además de furgones de 48' y 53'.</p>
-            <div class="carousel">
-                <div class="carousel-track" aria-label="Galería de flota">
-                    <figure class="slide"><img src="assets/img/fleet-1.png" alt="Cabezal moderno" />
-                        <figcaption class="muted">Cabezal para largas distancias</figcaption>
+
+            <div class="carousel gallery" data-autoplay="true" data-interval="3800">
+                <div class="carousel-track snap" aria-label="Galería de camiones">
+                    <figure class="slide">
+                        <div class="media">
+                            <img loading="lazy" src="assets/img/galeria/img-1.jpg" alt="imagen-1" />
+                        </div>
                     </figure>
-                    <figure class="slide"><img src="assets/img/fleet-2.png" alt="Chasis para contenedores" />
-                        <figcaption class="muted">Chasis 40' y 45'</figcaption>
+
+                    <figure class="slide">
+                        <div class="media">
+                            <img loading="lazy" src="assets/img/galeria/img-2.jpg" alt="imagen-2" />
+                        </div>
                     </figure>
-                    <figure class="slide"><img src="assets/img/fleet-3.png" alt="Furgón 53" />
-                        <figcaption class="muted">Furgones 48' y 53'</figcaption>
+
+                    <figure class="slide">
+                        <div class="media">
+                            <img loading="lazy" src="assets/img/galeria/img-3.jpg"
+                                alt="Cabezal amarillo Freightliner" />
+                        </div>
+                    </figure>
+
+                    <figure class="slide">
+                        <div class="media">
+                            <img loading="lazy" src="assets/img/galeria/img-4.jpg" alt="imagen-4" />
+                        </div>
+                    </figure>
+
+                    <figure class="slide">
+                        <div class="media">
+                            <img loading="lazy" src="assets/img/galeria/img-5.jpg" alt="imagen-5" />
+                        </div>
+                    </figure>
+
+                    <figure class="slide">
+                        <div class="media">
+                            <img loading="lazy" src="assets/img/galeria/img-6.jpg" alt="imagen-6" />
+                        </div>
+                    </figure>
+
+                    <figure class="slide">
+                        <div class="media">
+                            <img loading="lazy" src="assets/img/galeria/img-7.jpg" alt="imagen-7" />
+                        </div>
+                    </figure>
+
+                    <figure class="slide">
+                        <div class="media">
+                            <img loading="lazy" src="assets/img/galeria/img-8.jpg" alt="imagen-8" />
+                        </div>
+                    </figure>
+
+                    <figure class="slide">
+                        <div class="media">
+                            <img loading="lazy" src="assets/img/galeria/img-9.jpg" alt="imagen-9" />
+                        </div>
                     </figure>
                 </div>
+
+                <!-- dots -->
+                <div class="carousel-dots" aria-label="Paginación de galería"></div>
             </div>
-            <div class="chip" style="margin-top:16px">Capacidad: hasta 30 toneladas</div>
         </div>
     </section>
 
@@ -415,10 +463,11 @@
             <div>
                 <strong>Redes</strong>
                 <div class="foot-links row">
-                    <a class="chip" href="#" aria-label="Facebook">Facebook</a>
+                    <a class="chip" href="https://www.facebook.com/share/1Z4GGvthjP/" aria-label="Facebook">Facebook</a>
                     <a class="chip" href="https://www.instagram.com/gstransporte_pa/?igsh=YjZmNmNnczJlZXFs"
                         aria-label="Instagram">Instagram</a>
-                    <a class="chip" href="#" aria-label="TikTok">TikTok</a>
+                    <a class="chip" href="https://www.tiktok.com/@gstransporte_pa?is_from_webapp=1&sender_device=pc"
+                        aria-label="TikTok">TikTok</a>
                 </div>
             </div>
         </div>
@@ -426,8 +475,8 @@
 
     <!-- Social FABs (apiladas) -->
     <div class="social-fabs" aria-label="Redes sociales">
-        <a class="fab fab-tk" href="https://www.tiktok.com/@tu_usuario" target="_blank" rel="noopener"
-            aria-label="TikTok" title="TikTok">
+        <a class="fab fab-tk" href="https://www.tiktok.com/@gstransporte_pa?is_from_webapp=1&sender_device=pc"
+            target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
             <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
                 <path
                     d="M12.5 2c.2 1.5 1.2 5.3 5.3 5.6v3.2c-1.7.1-3.3-.5-4.7-1.4v7.3a6 6 0 1 1-5.2-6V14a2.8 2.8 0 1 0 2.1 2.7V2h2.5z" />
@@ -444,8 +493,8 @@
             </svg>
         </a>
 
-        <a class="fab fab-fb" href="https://facebook.com/tu_pagina" target="_blank" rel="noopener" aria-label="Facebook"
-            title="Facebook">
+        <a class="fab fab-fb" href="https://www.facebook.com/share/1Z4GGvthjP/" target="_blank" rel="noopener"
+            aria-label="Facebook" title="Facebook">
             <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
                 <path
                     d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.5v-2.9h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6v1.9h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12Z" />

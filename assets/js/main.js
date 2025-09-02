@@ -147,4 +147,56 @@ ${data.mensaje || ''}`
     });
   }
 
+  document.querySelectorAll('.carousel.gallery').forEach(gal => {
+    const track = gal.querySelector('.carousel-track');
+    const slides = Array.from(track.querySelectorAll('.slide'));
+    const dotsBox = gal.querySelector('.carousel-dots');
+
+    // crear dots
+    slides.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.addEventListener('click', () => goTo(i));
+      dotsBox.appendChild(b);
+    });
+
+    let idx = 0, timer = null;
+    function updateDots() {
+      dotsBox.querySelectorAll('button').forEach((b, i) =>
+        b.setAttribute('aria-current', i === idx ? 'true' : 'false'));
+    }
+    function goTo(i) {
+      idx = (i + slides.length) % slides.length;
+      const left =
+        slides[idx].offsetLeft -
+        parseFloat(getComputedStyle(track).paddingLeft || '0');
+      track.scrollTo({ left, behavior: 'smooth' });
+      updateDots();
+    }
+    function next() { goTo(idx + 1); }
+
+    // autoplay (pausa al interactuar)
+    const interval = parseInt(gal.dataset.interval || '3800', 10);
+    function start() { if (!gal.dataset.autoplay) return; stop(); timer = setInterval(next, interval); }
+    function stop() { if (timer) clearInterval(timer); timer = null; }
+
+    gal.addEventListener('mouseenter', stop);
+    gal.addEventListener('mouseleave', start);
+    gal.addEventListener('touchstart', stop, { passive: true });
+    gal.addEventListener('touchend', start, { passive: true });
+
+    // sync índice al hacer scroll manual
+    let t; track.addEventListener('scroll', () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        const pos = track.scrollLeft + track.clientWidth * 0.5;
+        idx = slides.findIndex(s => s.offsetLeft <= pos && s.offsetLeft + s.clientWidth > pos);
+        updateDots();
+      }, 100);
+    });
+
+    updateDots();
+    start();
+  });
+
 });
