@@ -374,7 +374,7 @@ select:focus {
 /* Footer */
 footer {
     background: var(--bg-2);
-    padding: 32px 0;
+    padding: 10px 0;
     border-top: 1px solid color-mix(in oklab, var(--muted) 14%, transparent)
 }
 
@@ -711,9 +711,10 @@ footer {
 }
 
 footer .firma {
-  margin-top: 12px;   
-  margin-bottom: 0px;
-  text-align: center;
+    margin-top: 12px;
+    font-size: 12px;
+    margin-bottom: 0px;
+    text-align: center;
 }
 
 /* Mostrar enlaces y CTA solo en escritorio */
@@ -824,4 +825,3 @@ html {
     scroll-margin-top: calc(var(--nav-h) - 80px);
 
 }
-
