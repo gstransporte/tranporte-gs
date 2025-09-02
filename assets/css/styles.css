@@ -575,7 +575,6 @@ footer {
 
 .clientes-track {
     display: inline-flex;
-    /* ancho = contenido */
     align-items: center;
     width: max-content;
     will-change: transform;
@@ -587,7 +586,6 @@ footer {
     flex: 0 0 auto;
     object-fit: contain;
     margin-right: 40px;
-    filter: grayscale(100%);
     transition: filter .3s;
 }
 
