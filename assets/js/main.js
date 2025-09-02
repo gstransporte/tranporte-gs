@@ -167,9 +167,8 @@ ${data.mensaje || ''}`
     }
     function goTo(i) {
       idx = (i + slides.length) % slides.length;
-      const left =
-        slides[idx].offsetLeft -
-        parseFloat(getComputedStyle(track).paddingLeft || '0');
+      const slide = slides[idx];
+      const left = slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2;
       track.scrollTo({ left, behavior: 'smooth' });
       updateDots();
     }

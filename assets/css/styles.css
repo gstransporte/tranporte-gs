@@ -793,19 +793,19 @@ footer {
     }
 
     .gallery .slide {
-        min-width: 56%;
+        min-width: 38%;
     }
 }
 
 /* Ajuste del carrusel en móviles */
 @media (max-width: 860px) {
     .carousel-track {
-        gap: 8px;
-        padding-bottom: 4px;
+        padding: 0 5% 4px;
     }
 
-    .slide {
-        min-width: 90%;
+    .gallery .slide {
+        min-width: 100%;
+        scroll-snap-align: center;
     }
 }
 
