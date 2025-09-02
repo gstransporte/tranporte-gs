@@ -714,7 +714,7 @@ footer {
 
 footer .firma {
   margin-top: 12px;   
-  margin-bottom: 6px;
+  margin-bottom: 0px;
   text-align: center;
 }
 
@@ -826,3 +826,4 @@ html {
     scroll-margin-top: calc(var(--nav-h) - 80px);
 
 }
+
