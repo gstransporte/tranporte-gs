@@ -715,6 +715,11 @@ footer .firma {
     font-size: 12px;
     margin-bottom: 0px;
     text-align: center;
+    text-decoration: underline;
+    font-weight: 600;
+    text-underline-offset: 4px;
+    color: var(--muted);
+    transition: color 0.25s ease, text-decoration-color 0.25s ease
 }
 
 /* Mostrar enlaces y CTA solo en escritorio */
