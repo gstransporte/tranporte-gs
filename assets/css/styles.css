@@ -149,7 +149,6 @@ img {
     box-shadow: 0 14px 30px -18px rgba(2, 8, 23, .25);
     overflow: hidden;
     max-height: 0;
-    /* cerrado */
     opacity: 0;
     pointer-events: none;
     transition: max-height .32s ease, opacity .22s ease;
@@ -732,10 +731,6 @@ footer .firma {
         display: flex;
     }
 
-    .nav-drop {
-        display: none;
-    }
-
     .hamb {
         display: none;
     }
@@ -816,6 +811,40 @@ footer .firma {
     .gallery .slide {
         min-width: 100%;
         scroll-snap-align: center;
+    }
+}
+
+/* Menú móvil hasta 1199px */
+@media (min-width: 860px) and (max-width: 1199px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+    .hamb {
+        display: inline-block;
+    }
+}
+
+/* Menú completo desde 1200px */
+@media (min-width: 1200px) {
+    .nav-links {
+        display: flex;
+    }
+
+    .nav-cta {
+        display: flex;
+    }
+
+    .nav-drop {
+        display: none;
+    }
+
+    .hamb {
+        display: none;
     }
 }
 
