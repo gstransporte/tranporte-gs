@@ -1,0 +1,7 @@
+# robots.txt para transporte-gs.com
+User-agent: *
+Allow: /
+
+# Mapa del sitio
+Sitemap: https://transportegs.com/sitemap.xml
+
