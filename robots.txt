@@ -2,6 +2,10 @@
 User-agent: *
 Allow: /
 
+# Permite también AdsBot (si usas campañas que apunten al sitio)
+User-agent: AdsBot-Google
+Allow: /
+
 # Mapa del sitio
 Sitemap: https://transportegs.com/sitemap.xml
 
