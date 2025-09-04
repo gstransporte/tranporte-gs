@@ -11,10 +11,7 @@
 
     <image:image>
       <image:loc>https://transportegs.com/assets/img/logo-gs.png</image:loc>
-      <image:title>Logo Transporte G.S.</image:title>
-      <image:caption>Identidad de marca Transporte G.S.</image:caption>
     </image:image>
-
     <!-- Imágenes principales -->
     <image:image>
       <image:loc>https://transportegs.com/assets/img/hero.jpg</image:loc>
